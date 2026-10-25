@@ -1,0 +1,225 @@
+/* ---------- General ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f4f4f4;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ---------- Layout con Grid ---------- */
+body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 280px;
+  grid-template-areas:
+    "cabecera cabecera cabecera"
+    "principal principal lateral"
+    "pie pie pie";
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.cabecera  { grid-area: cabecera; }
+.principal { grid-area: principal; }
+.lateral   { grid-area: lateral; }
+.pie       { grid-area: pie; }
+
+/* ---------- Cabecera y menú (Flexbox) ---------- */
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1d5c63;
+  color: white;
+  padding: 15px 20px;
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Contenido principal ---------- */
+.principal section {
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.principal h2 {
+  margin-bottom: 10px;
+  color: #1d5c63;
+}
+
+/* Rejilla de tarjetas */
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 15px;
+}
+
+/* ---------- Tarjetas (Flexbox) ---------- */
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+}
+
+.tarjeta img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.tarjeta h3 {
+  padding: 10px 10px 0 10px;
+}
+
+.tarjeta p {
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+/* el margin-top auto empuja el botón al final de la tarjeta */
+.boton {
+  margin: auto 10px 10px 10px;
+  padding: 8px;
+  text-align: center;
+  background-color: #e07a1f;
+  color: white;
+  border-radius: 3px;
+}
+
+.boton:hover {
+  background-color: #b85f10;
+}
+
+/* ---------- Aside ---------- */
+.lateral {
+  background-color: white;
+  padding: 20px;
+  align-self: start;
+}
+
+.lateral h2 {
+  margin-bottom: 10px;
+  color: #1d5c63;
+  font-size: 20px;
+}
+
+.lateral li {
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.publi {
+  margin-top: 20px;
+  height: 200px;
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #777;
+}
+
+/* ---------- Pie de página (Flexbox) ---------- */
+.pie {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: #222;
+  color: white;
+  padding: 25px 20px;
+  margin-bottom: 20px;
+}
+
+.pie-col {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.pie-col h4 {
+  margin-bottom: 5px;
+}
+
+.pie-col a:hover {
+  text-decoration: underline;
+}
+
+.redes {
+  flex: 0 0 120px;
+}
+
+/* ---------- Tablet (768px - 1024px): 2 columnas ---------- */
+@media (min-width: 768px) and (max-width: 1024px) {
+  body {
+    grid-template-columns: 1fr 220px;
+    grid-template-areas:
+      "cabecera cabecera"
+      "principal lateral"
+      "pie pie";
+  }
+
+  .tarjetas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---------- Móvil (< 768px): 1 columna ---------- */
+@media (max-width: 767px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "cabecera"
+      "principal"
+      "lateral"
+      "pie";
+  }
+
+  .cabecera {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .tarjetas {
+    grid-template-columns: 1fr;
+  }
+
+  .pie {
+    flex-direction: column;
+  }
+
+  .redes {
+    flex: 1;
+  }
+}
